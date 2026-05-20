@@ -1,5 +1,3 @@
-add this  to my AndroidManifest.tmpl.xml
-
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Replace org.libsdl.app with the identifier of your game below, e.g.
      com.gamemaker.game
