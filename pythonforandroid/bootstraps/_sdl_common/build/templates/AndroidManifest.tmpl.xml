@@ -122,22 +122,7 @@
             <!-- REPLACE THIS SCHEME -->
             <!-- WITH YOUR REAL REVERSED CLIENT ID -->
 
-            <intent-filter>
-
-                <action
-                    android:name="android.intent.action.VIEW"/>
-
-                <category
-                    android:name="android.intent.category.DEFAULT"/>
-
-                <category
-                    android:name="android.intent.category.BROWSABLE"/>
-
-                <data
-                    android:scheme="com.googleusercontent.apps.504175621328-injf3vjdaaodglue18qkrs79hv1dds08"
-                    android:host="oauthredirect"/>
-
-            </intent-filter>
+            
 
 
             {%- if args.intent_filters -%}
