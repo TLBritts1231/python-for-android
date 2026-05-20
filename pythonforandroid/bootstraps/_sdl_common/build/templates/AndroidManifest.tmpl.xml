@@ -134,7 +134,7 @@
                     android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:scheme="com.googleusercontent.apps.504175621328-8b159ogo33be3k9t1a8tqs4ahohfmvsh"
+                    android:scheme="com.googleusercontent.apps.504175621328-injf3vjdaaodglue18qkrs79hv1dds08"
                     android:host="oauthredirect"/>
 
             </intent-filter>
