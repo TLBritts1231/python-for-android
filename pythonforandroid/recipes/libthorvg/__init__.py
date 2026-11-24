@@ -86,7 +86,7 @@ class LibThorVGRecipe(MesonRecipe):
             )
 
             # copy libomp.so
-            arch_map = {
+            """arch_map = {
                 "arm64-v8a": "aarch64",
                 "armeabi-v7a": "arm",
                 "x86": "i386",
@@ -97,7 +97,45 @@ class LibThorVGRecipe(MesonRecipe):
             pattern = join(self.ctx.ndk.llvm_prebuilt_dir, "lib/clang/*/lib/linux", lib_arch)
             clang_lib_dir = glob(pattern)[0]
             libomp = join(clang_lib_dir, "libomp.so")
-            shprint(sh.cp, libomp, join("install", "lib"))
+            shprint(sh.cp, libomp, join("install", "lib"))"""
+
+            arch_map = {
+                "arm64-v8a": "aarch64",
+                "armeabi-v7a": "arm",
+                "x86": "i386",
+                "x86_64": "x86_64",
+            }
+            
+            lib_arch = arch_map[arch.arch]
+            
+            pattern = join(
+                self.ctx.ndk.llvm_prebuilt_dir,
+                "lib",
+                "clang",
+                "*",
+                "lib",
+                "linux",
+                lib_arch,
+                "libomp.so"
+            )
+            
+            libomp_files = glob(pattern)
+            
+            if not libomp_files:
+                raise RuntimeError(
+                    f"Could not find libomp.so for {arch.arch}. "
+                    f"NDK search location: {self.ctx.ndk.llvm_prebuilt_dir}"
+                )
+            
+            libomp = libomp_files[0]
+            
+            print(f"Found OpenMP runtime: {libomp}")
+            
+            shprint(
+                sh.cp,
+                libomp,
+                join("install", "lib")
+            )
 
             # setup bins
             bin_dir = join("install", "bin")
