@@ -26,8 +26,7 @@ class LibThorVGRecipe(MesonRecipe):
     bins = ["tvg-lottie2gif", "tvg-svg2png"]
     built_libraries = {
         "libthorvg-1.so": "install/lib",
-        "libomp.so": "install/lib"
-    }
+    }#"libomp.so": "install/lib" i (travis took this out because this file doesnt exist
     for bin in bins:
         built_libraries[f"lib{bin}bin.so"] = "install/bin"
 
@@ -99,7 +98,7 @@ class LibThorVGRecipe(MesonRecipe):
             libomp = join(clang_lib_dir, "libomp.so")
             shprint(sh.cp, libomp, join("install", "lib"))"""
 
-            arch_map = {
+            """arch_map = {
                 "arm64-v8a": "aarch64",
                 "armeabi-v7a": "arm",
                 "x86": "i386",
@@ -135,7 +134,7 @@ class LibThorVGRecipe(MesonRecipe):
                 sh.cp,
                 libomp,
                 join("install", "lib")
-            )
+            )"""
 
             # setup bins
             bin_dir = join("install", "bin")
