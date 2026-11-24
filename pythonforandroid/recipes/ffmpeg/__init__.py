@@ -4,7 +4,7 @@ import sh
 from multiprocessing import cpu_count
 
 
-class FFMpegRecipe(Recipe):
+"""class FFMpegRecipe(Recipe):
     version = '8.0.1'
     # Moved to github.com instead of ffmpeg.org to improve download speed
     url = 'https://www.ffmpeg.org/releases/ffmpeg-{version}.tar.xz'
@@ -21,7 +21,15 @@ class FFMpegRecipe(Recipe):
         "libswresample.so",
         "libffmpegbin.so",
     ]
-    built_libraries = dict.fromkeys(_libs, "./lib")
+    built_libraries = dict.fromkeys(_libs, "./lib")"""
+
+class FFMpegRecipe(Recipe):
+    version = 'n6.1.2'
+    # Moved to github.com instead of ffmpeg.org to improve download speed
+    url = 'https://github.com/FFmpeg/FFmpeg/archive/{version}.zip'
+    depends = ['sdl2']  # Need this to build correct recipe order
+    opts_depends = ['openssl', 'ffpyplayer_codecs', 'av_codecs']
+    patches = ['patches/configure.patch'] 
 
     def should_build(self, arch):
         build_dir = self.get_build_dir(arch.arch)
